@@ -1,59 +1,65 @@
-\documentclass[krantz1,ChapterTOCs]{krantz}
-\usepackage{fixltx2e,fix-cm}
-\usepackage{amssymb}
+\documentclass{book}
+\pagestyle{plain}
 \usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{subfigure}
-\usepackage{makeidx}
-\usepackage{multicol}
-
-%\usepackage[dvips]{hyperref}
-
-\frenchspacing
-\tolerance=5000
-
-\makeindex
-
-\include{frontmatter/preamble} %place custom commands and macros here
-
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\title{Aluffi Algebra - Ch. 0 Solutions}
+\author{Aaron Percival}
+\date{\today}
 \begin{document}
-
-\frontmatter
-
-\title{Quantitative Approaches to Evaluating Climate Change Impacts... 
-%in Socio-Environmental Systems, Public Health, and Insurance\\
-%{\Large(Applied Environmental Statistics Series)}
-}
-\author{Yours Truly}
-
 \maketitle
-
-%\include{frontmatter/dedication}
-%\cleardoublepage
-\setcounter{page}{7} %previous pages will be reserved for frontmatter to be added in later.
+\textit{To Haira, who inspires me to dream.}
 \tableofcontents
-%\include{frontmatter/foreword}
-%\include{frontmatter/preface}
-\listoffigures
-\listoftables
-%\include{frontmatter/contributor}
-%\include{frontmatter/symbollist}
+\chapter*{Preface}
+This solutions manual documents some of the solutions I have given to selected exercises in Paulo Aluffi's textbook. I hope that my solutions are mostly accurate. In cases where I have sometimes been unsure, I have resorted to asking questions on Math StackExchange.You can look up my questions by searching up username [Aaron].
+\chapter{Set theory and categories}
+\section{Naive set theory}
+\paragraph{1.2} Prove that if $\sim$ is an equivalence relation on a set S, then the corresponding family $\mathscr{P}$\textsubscript{$\sim$} is indeed a partition of S: that is, its elements are nonempty, disjoint, and their union is S.
+\begin{proof}
+We first prove that the elements of $\mathscr{P}$\textsubscript{$\sim$} are nonempty. If a ${\in}$ S, then [a]\textsubscript{$\sim$} ${\in}$ $\mathscr{P}$\textsubscript{$\sim$}. Since a ${\in}$ [a]\textsubscript{$\sim$}, [a]\textsubscript{$\sim$} is nonempty.
 
-\mainmatter
+Next, we prove that the elements of $\mathscr{P}$\textsubscript{$\sim$} are disjoint. Let [a]\textsubscript{$\sim$}, [b]\textsubscript{$\sim$} ${\in}$ $\mathscr{P}$\textsubscript{$\sim$}. Let x ${\in}$ [a]\textsubscript{$\sim$}, [b]\textsubscript{$\sim$}. Then a $\sim$ x and b $\sim$ x, and thus by symmetry and transitivity, we have a $\sim$ x and x $\sim$ b, so a $\sim$ b. But this means that, if y $\in$ [a]\textsubscript{$\sim$}, then y $\in$ [b]\textsubscript{$\sim$}. Hence [a]\textsubscript{$\sim$} $\subseteq$ [b]\textsubscript{$\sim$}.  Similarly, since a $\sim$ b implies b $\sim$ a, we have [b]\textsubscript{$\sim$} $\subseteq$ [a]\textsubscript{$\sim$}. Therefore, [a]\textsubscript{$\sim$} = [b]\textsubscript{$\sim$} unless [a]\textsubscript{$\sim$} and [b]\textsubscript{$\sim$} are disjoint.
 
-\part{Ecosystem-base Impacts of Climate Change}
-\include{chapters/chapter1/ch1}
-%\include{chapters/chapter2/ch2}
+Finally, we must show that the union of elements in $\mathscr{P}$\textsubscript{$\sim$} equals S. If x $\in$ S, then x $\in$ [x]\textsubscript{$\sim$} $\in$ $\mathscr{P}$\textsubscript{$\sim$}. Thus the union of the elements in $\mathscr{P}$\textsubscript{$\sim$} is equal to S.
+\end{proof}	
 
-\part{Climate Risks in Public Health and Epidemiology}
+\paragraph{1.3} Given a partition $\mathscr{P}$ on a set S, show how to define an equivalence relation $\sim$ on S such that $\mathscr{P}$ is the corresponding partition.
+\begin{proof}
+Let $\sim$ be the relation defined by a $\sim$ b $\iff$ a $\in$ P and b $\in$ P, where P $\in \mathscr{P}$. Clearly $\sim$ is an equivalence relation. For some a $\in \mathscr{P}$, let [a]\textsubscript{$\sim$} be its equivalence class. If x $\in \mathscr{P}$, then x $\sim$ a, and therefore x $\in$ [a]\textsubscript{$\sim$}. If x $\in$ [a]\textsubscript{$\sim$}, then x $\sim$ a by definition, and therefore x $\in$ $\mathscr{P}$.
+\end{proof}
+\paragraph{1.4} How many different equivalence relations may be defined on the set $\{1, 2, 3\}$?
+\begin{proof}
+This question can be better defined as: how many equivalence relations may be defined on the set $\{a, b, c\}$, where a, b, c $\in$ $\mathbb{N}$? For any equivalence relation $\sim$, we must have $\{a, a\}, \{b, b\}, \{c, c\} \in \sim$ to satisfy the reflexivity property. Now, we proceed by exhaustion. Every set hereafter is in union with the set $\{\{a, a\}, \{b, b\}, \{c, c\}\}$ to satisfy reflexivity.
+\\
+$\{\}$ \\
+$\{\{a, b\},\{b, a\}\}$\\
+$\{\{a, c\},\{c, a\}\}$\\
+$\{\{b, c\},\{c, b\}\}$\\
+$\{\{a, b\},\{b, a\}, \{a, c\},\{c, a\}, \{b, c\},\{c, b\}\} = S \times S$\\
 
-\part{Socio-economic Impacts of Climate Adaptation and Resilience}
+The above sets satisfy the the equivalence relation properties. The other sets to consider with $S \times S$ are the following sets:
+\\
+\\
+$\{\{a, b\},\{b, a\}\ \{a, c\},\{c, a\}\}$\\
+$\{\{a, b\},\{b, a\}\ \{b, c\},\{c, b\}\}$\\
+$\{\{a, c\},\{c, a\}\ \{b, c\},\{c, b\}\}$\\
 
+These sets break transitivity. We do not consider the sets with 3 and 5 elements within $S \times S$ since those break symmetry. 
 
+Thus, there are 5 equivalence relations.
+\end{proof}
+\paragraph{1.5} Give an example of a relation that is reflexive and symmetric but not transitive. What happens if you attempt to use this relation to define a partition on the set?
+\begin{proof}
+Let R be the relation on $\mathbb{R}$ defined by $a \sim b \iff |a - b| < 5$. We have that, for all $a \in \mathbb{R}$,  $|a - a| = 0 < 5$, thus $aRa$. And for all $a, b \in \mathbb{R}$, if $|a - b| < 5$, then $|b - a| < 5$. However, we have that $|1 - 4| = 3 < 5$ and $|4 - 8| = 4 < 5$, but $|1 - 8| = 7 > 5$, thus R is not transitive.
 
-\bibliographystyle{plain}
-\bibliography{bibtex_example}
+If we create a class on R, we can have two classes which share some but not all elements. Meaning, we cannot create a partition of $\mathbb{R}$ through the classes of R, since the classes would not be disjoint. For example, $4 \in [1]\textsubscript{R}$ and $4 \in [4]\textsubscript{R}$, but $8 \notin [1]\textsubscript{R}$ and $8 \in [4]\textsubscript{R}$.
+\end{proof}
 
-\printindex
+\section{Functions between sets}
+\paragraph{2.10} Show that if $A$ and $B$ are finite sets, then $|B^A| = |B|^{|A|}$.
+\begin{proof}
+\end{proof}
+
 
 \end{document}
